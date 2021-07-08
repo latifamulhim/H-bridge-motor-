@@ -1,0 +1,83 @@
+// C++ code
+
+// MotorA
+int in4=7;
+int in3=6;
+int enA=5;
+
+// MotorB
+int in1=7;
+int in2=6;
+int enB=5;
+
+void setup()
+{
+  pinMode(enA,OUTPUT);
+  pinMode(enB,OUTPUT);
+  pinMode(in4,OUTPUT);
+  pinMode(in3,OUTPUT);
+  pinMode(in1,OUTPUT);
+  pinMode(in2,OUTPUT);
+
+    
+ 
+  digitalWrite(in1, LOW);
+  digitalWrite(in2, LOW);
+  digitalWrite(in3, LOW);
+  digitalWrite(in4, LOW);
+  
+  }
+void loop()
+{
+  //forword 
+  //Turn on motorA
+  digitalWrite(in3,HIGH);
+  digitalWrite(in4,LOW);
+  analogWrite(enA,200);
+   //Turn on motorB
+  digitalWrite(in1,HIGH);
+  digitalWrite(in2,LOW);
+  analogWrite(enA,200);
+
+  delay(1000);
+
+ //backword 
+  //Turn on motorA
+  digitalWrite(in4,HIGH);
+  digitalWrite(in3,LOW);
+  analogWrite(enA,200);
+   //Turn on motorB
+  digitalWrite(in2,HIGH);
+  digitalWrite(in1,LOW);
+  analogWrite(enA,200);
+
+  delay(1000);
+ 
+  }
+void speedControl() {
+  // Turn on motors
+  digitalWrite(in1, LOW);
+  digitalWrite(in2, HIGH);
+  digitalWrite(in3, LOW);
+  digitalWrite(in4, HIGH);
+  
+  // 
+  for (int i = 0; i < 256; i++) {
+    analogWrite(enA, i);
+    analogWrite(enB, i);
+    delay(20);
+  }
+  
+  for (int i = 255; i >= 0; --i) {
+    analogWrite(enA, i);
+    analogWrite(enB, i);
+    delay(20);
+  }
+  
+  // Now turn off motors
+  digitalWrite(in1, LOW);
+  digitalWrite(in2, LOW);
+  digitalWrite(in3, LOW);
+  digitalWrite(in4, LOW);
+}
+
